@@ -43,8 +43,6 @@ def auto_start_ec2():
         print("No ec2 with Auto-Start action stopped")
 
 
-def auto_manage_ec2():
-    # auto_stop_ec2()
+def lambda_handler(event, context):
+    auto_stop_ec2()
     auto_start_ec2()
-
-auto_manage_ec2()
