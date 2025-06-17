@@ -23,7 +23,28 @@ def auto_stop_ec2():
     else:
         print("No ec2 running with Auto Stop action found")
 
-def auto_start_stop_ec2():
-    auto_stop_ec2()
+def auto_start_ec2():
+    start_respose = ec2.describe_instances(
+        Filters=[
+            {'Name': 'tag:Action', 'Values': ['Auto-Start']},
+            {'Name': 'instance-state-name', 'Values': ['stopped']}
+        ]
+    )
 
-auto_start_stop_ec2()
+    start_ids = [instance['InstanceId']
+                 for reservation in start_respose['Reservations']
+                 for instance in reservation['Instances']]
+    print(start_ids)
+
+    if start_ids:
+        ec2.start_instances(InstanceIds=start_ids)
+        print("Auto-started ec2 instances are : ",start_ids)
+    else:
+        print("No ec2 with Auto-Start action stopped")
+
+
+def auto_manage_ec2():
+    # auto_stop_ec2()
+    auto_start_ec2()
+
+auto_manage_ec2()
