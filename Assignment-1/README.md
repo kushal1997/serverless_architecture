@@ -37,7 +37,7 @@ Automatically **start or stop EC2 instances** based on tags using a Python-based
 
 📸 *Screenshot: Lambda Function Code*
 <p align="center">
-  <img src="./screenshots/lambda_code.png" width="800" alt="Lambda Function Code" />
+  <img src="./screenshots/lamda-code.png" width="800" alt="Lambda Function Code" />
 </p>
 
 ### ✅ 4. Test Event Configuration
