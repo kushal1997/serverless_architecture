@@ -61,15 +61,23 @@ The Lambda function scans an S3 bucket and deletes all files older than **30 day
 
 ### ✅ 4. Manual Test & Output Verification
 - Manually triggered the Lambda function.
+- Change the parameter of days to 4 to test out my code as:
+    ```
+      days_to_check = 4
+    ```
 - Verified the log to confirm that:
-  - Only files older than 30 days were deleted.
+  - Only files older than `4 days` were deleted.
   - Recent files were retained.
 
 📸 *Screenshot: Lambda Execution Log*
 <p align="center">
-  <img src="./lambda-execution-log.png" width="800" alt="Lambda Test Event" />
+  <img src="./screenshots/lambda-execution-log.png" width="800" alt="Lambda Test Event" />
 </p>
 
+📸 *Screenshot: S3 Bucket list after execution*
+<p align="center">
+  <img src="./screenshots/s3-bucket-list-after-delition.png" width="800" alt="S3 Bucket list after execution" />
+</p>
 
 ---
 
