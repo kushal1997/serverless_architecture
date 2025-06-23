@@ -2,11 +2,14 @@ import boto3
 from datetime import datetime
 
 def lambda_handler(event, context):
-    ec2 = boto3.client('ec2', region_name='us-west-2')
+    ec2 = boto3.client('ec2')
 
-    instances = event['detail']['instance-id']
-
-    present_date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    try:
+        instances = event['detail']['instance-id']
+    except KeyError:
+        return {"status": "no instance found"}
+    
+    present_date = datetime.now().strftime('%Y-%m-%d')
     print(present_date)
     tags = [
         {'Key': 'LaunchDate', 'Value': present_date},
@@ -22,11 +25,11 @@ def lambda_handler(event, context):
     }
 
 # ------------- only for running code locally ---------------------
-if __name__ == "__main__":
-    fake_event = {
-        'detail': {
-            'instance-id': 'i-04e5afa4082ea2473'
-        }
-    }
-    lambda_handler(fake_event, None)
+# if __name__ == "__main__":
+#     fake_event = {
+#         'detail': {
+#             'instance-id': 'i-0d68e10ecdcb9513a'
+#         }
+#     }
+#     lambda_handler(fake_event, None)
 # ------------------------------------------------------------------
