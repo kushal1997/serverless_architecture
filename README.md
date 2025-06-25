@@ -14,6 +14,7 @@ This repository documents AWS-based automation assignments completed as part of 
 | 2          | S3 Bucket File Cleanup                                                | [Assignment 2](#-assignment-2-s3-bucket-file-cleanup)     |
 | 4          | EBS Snapshot Automation                                               | [Assignment 4](#-assignment-4-ebs-snapshot-automation)    |
 | 5          | Auto-Tagging EC2 on Launch                                            | [Assignment 5](#-assignment-5-auto-tagging-ec2-on-launch) |
+| 6          | Monitor and Alert High AWS Billing                                    | [Assignment 6](#-assignment-6-monitor-and-alert-high-aws-billing) | 
 
 > 📝 More assignments will be added here as they're completed!
 
@@ -72,6 +73,26 @@ This repository documents AWS-based automation assignments completed as part of 
 - Tagged EC2 instance view
 
 ---
+
+### 📌 Assignment 6: Monitor and Alert High AWS Billing
+
+**Goal**: Automatically monitor AWS estimated billing and send email alerts when it crosses a defined threshold (e.g., $50).
+
+**AWS Services**: Lambda, CloudWatch, SNS, EventBridge, IAM  
+**Key Logic**: Fetch billing metrics from CloudWatch and trigger SNS notifications via scheduled Lambda.
+
+📂 [`Assignment-6`](./Assignment-6)  
+📄 `requirements.txt` included  
+📸 Includes screenshots:
+- Lambda function and logs
+- SNS topic and email subscription
+- IAM role
+- EventBridge schedule for daily trigger
+- Billing test and alert output
+
+---
+
+
 
 ## 🚀 How to Run / Reproduce
 
