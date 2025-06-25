@@ -5,8 +5,8 @@ def lambda_handler(event,context):
     cloudWatch = boto3.client('cloudwatch', region_name='us-east-1')
     sns = boto3.client('sns')
 
-    max_amount = 0.5
-    sns_topic_arn = "arn:aws:sns:ap-south-1:036714158197:Kushal_billing_alert"
+    max_amount = 1
+    sns_topic_arn = "SNS_TOPIC_ARN"
 
     res = cloudWatch.get_metric_statistics(
         Namespace='AWS/Billing',
@@ -24,7 +24,8 @@ def lambda_handler(event,context):
 
         if latest_billing_amount > max_amount:
             message = f"AWS billing alert \n\n Current charges: {latest_billing_amount}$\n Threshold: {max_amount}$"
-            print(message)
+            # print(message)
+            sns.publish(TopicArn=sns_topic_arn, Message=message, Subject="!!! Aws Billing Alert")
             print("Alert Sent !!! ")
         else:
             print("Billing is all under control")
@@ -34,7 +35,7 @@ def lambda_handler(event,context):
 
 
 # ------------- only for running code locally ---------------------
-if __name__ == "__main__":
-    lambda_handler(None, None)
+# if __name__ == "__main__":
+#     lambda_handler(None, None)
 # ------------------------------------------------------------------
 
